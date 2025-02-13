@@ -1,4 +1,6 @@
-import React from 'react'
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import AuthProvider from '@/components/AuthProvider';
 import '@/assets/styles/globals.css'
 
 export const metadata = {
@@ -10,12 +12,17 @@ export const metadata = {
 }
 
 function MainLayout({children}) {
+  console.log(process.env)
   return (
+    <AuthProvider>
     <html>
-        <body className=' bg-black'>
+        <body className=''>
+            <Navbar />
         <main>{children}</main>
+         <Footer />
         </body>
     </html>
+    </AuthProvider>
   )
 }
 

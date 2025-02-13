@@ -10,6 +10,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        darkBlue : "#1a2547"
       },
       fontFamily: {
         sans: ["Poppins", "sans-serif"],

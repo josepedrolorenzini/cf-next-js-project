@@ -1,7 +1,17 @@
+import Hero from '@/components/Hero';
+import HomeProperties from '@/components/HomeProperties';
+import InfoBoxes from '@/components/InfoBoxes';
+import connectDB from '@/config/database';
+
+
 const HomePage = () => {
+  // console.log(process.env)
+  connectDB();
     return (  
-       <div  className="text-2xl text-cyan-300">
-        <h1>Welcome to My React  home page App!</h1>
+       <div >
+     <Hero />
+     <InfoBoxes />
+     <HomeProperties />
       </div>
     );
 }
