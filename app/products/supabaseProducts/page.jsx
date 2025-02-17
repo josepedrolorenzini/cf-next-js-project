@@ -22,7 +22,7 @@ function supabaseProducts() {
             }
 
              // update the state with the fetched data
-            setProducts(result.data);
+            setProducts(result.data.sort((a,b)=> b.id - a.id));
 
             
         } catch (error) {
@@ -65,14 +65,15 @@ function supabaseProducts() {
                     <p className='text-sm text-gray-500'>${product.price.toFixed(2)}</p>
                     <button className='w-full text-white bg-purple-700 rounded-md hover:bg-blue-600'>Add to Cart</button>
                     <Link
-                    href={`/products/${product.id}`}
+                    href={`/products/supabaseProducts/${product.id}`}
                      className='w-full px-1 px-2 text-white bg-purple-700 rounded-md hover:bg-blue-600'>View product</Link>
                   </div>
                 </div>
               </div>
        )
   
-   })}
+   }
+   )}
   </div>
     </>
   )

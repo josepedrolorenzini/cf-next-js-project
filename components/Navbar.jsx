@@ -16,6 +16,7 @@ function Navbar() {
     
     const [isMobileMenuOpen , setIsMobileMenuOpen] = useState(false);
     const [isProfileMenuOpen , setIsProfileMenuOpen] = useState(false); 
+    const [isDropdownOpen , setIsDropdownOpen] = useState(false);
     // const [isLoggedIn , setIsLoggedIn] = useState(false);
      const [providers , setProviders] = useState(null);
     
@@ -80,25 +81,36 @@ function Navbar() {
               />
 
               <span className="hidden ml-2 text-2xl font-bold text-white md:block"
-                >Punk shop</span
+                >Rock shop</span
               >
             </a>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
             <div className="hidden md:ml-6 md:block">
-              <div className="flex space-x-2">
+              <div className="flex space-x-2  text-sm  md:text-base">
                 <Link
                   href="/"
                   className={`${pathname === '/' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}
                   >Home</Link>
-                <Link
+                {/* <Link
                   href="/properties"
-                  className={`${pathname === '/properties' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}                  >Properties</Link>
-                <Link
+                  className={`${pathname === '/properties' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}                  >Properties</Link> */}
+                {/* <Link
                   href="/properties/add"
-                  className={`${pathname === '/properties/add' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}                  >Add Property</Link>
+                  className={`${pathname === '/properties/add' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}                  >Add Property</Link> */}
                    <Link
-                  href="/products"
-                  className={`${pathname === '/products' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}                  >Products</Link>
+                  href="/products/supabaseProducts"
+                  className={`${pathname === '/products/supabaseProducts' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}                 
+                  >Products</Link>
+                     <Link
+                  href="/products/supabaseProducts/add"
+                  className={`${pathname === '/products/supabaseProducts/add' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}                  
+                  >Add Products</Link>
+                      <Link
+                  href="/products/supabaseProducts/edit"
+                  className={`${pathname === '/products/supabaseProducts/edit' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 `}           
+                  >Edit Products</Link>
+                  
+      
               </div>
             </div>
           </div>
