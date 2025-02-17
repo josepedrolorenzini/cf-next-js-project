@@ -1,26 +1,24 @@
-"use client"; // Required for useState and useEffect
+"use client"; 
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import supabase from "../../../../../config/supabaseConnection";
 import Link from "next/link"; 
-import { useRouter } from "next/navigation";
-
+import { EditSkateboard } from "@/app/actions/EditSkateboard";
 
 function EditProductPage() {
-  const params = useParams();
-  const { id } = params;
+  const { id } = useParams();
   const router = useRouter();
 
-  const [error, setError] = useState(null);
-  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     price: "",
     quantity: "",
     category: "",
+    image_url: null, 
   });
 
   useEffect(() => {
@@ -34,13 +32,13 @@ function EditProductPage() {
       if (error) {
         console.error("Error fetching product:", error.message);
       } else {
-        setProduct(data);
         setFormData({
           name: data.name || "",
           description: data.description || "",
           price: data.price || "",
           quantity: data.quantity || "",
           category: data.category || "",
+          image_url: data.image_url || null,
         });
       }
       setLoading(false);
@@ -48,19 +46,33 @@ function EditProductPage() {
     getProduct();
   }, [id]);
 
+  async function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+    }
+  }
+
   async function handleUpdate(e) {
     e.preventDefault();
-    const { error } = await supabase
-      .from("products")
-      .update(formData)
-      .eq("id", id);
 
-    if (error) {
-      console.error("Update failed:", error.message);
-      alert("Failed to update product");
+    const updatedFormData = new FormData();
+    updatedFormData.append("id", id);
+    updatedFormData.append("name", formData.name);
+    updatedFormData.append("description", formData.description);
+    updatedFormData.append("price", formData.price);
+    updatedFormData.append("quantity", formData.quantity);
+    updatedFormData.append("category", formData.category);
+    updatedFormData.append("image_url", formData.image_url); 
+    if (imageFile) updatedFormData.append("image_file", imageFile);
+
+    const result = await EditSkateboard(updatedFormData);
+
+    if (result.success) {
+      alert(result.message);
+      router.push("/products/supabaseProducts");
     } else {
-      alert("Product updated successfully!");
-        router.push("/products/supabaseProducts")
+      alert(result.message);
     }
   }
 
@@ -129,7 +141,20 @@ function EditProductPage() {
             required
           />
         </div>
-        
+
+        {/* Image Upload */}
+        <div className="mb-4">
+          <label className="block mb-1 font-bold text-gray-700">Product Image</label>
+          <input 
+            type="file" 
+            accept="image/*" 
+            onChange={handleFileChange} 
+            className="w-full px-3 py-2 border rounded" 
+          />
+          {formData.image_url && (
+            <img src={formData.image_url} alt="Current Image" className="mt-2 w-32 h-32 object-cover"/>
+          )}
+        </div>
 
         <button
           type="submit"
@@ -140,7 +165,7 @@ function EditProductPage() {
       </form>
 
       <div className="text-center mt-4">
-        <Link href="/products" className="text-grey-900 hover:underline">
+        <Link href="/products/supabaseProducts/edit" className="text-grey-900 hover:underline">
           Back to Products
         </Link>
       </div>

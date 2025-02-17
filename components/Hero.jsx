@@ -11,10 +11,10 @@ function Hero() {
           <h1
             className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"
           >
-            Find The Perfect Rental
+           Rocks shop
           </h1>
           <p className="my-4 text-xl text-white">
-            Discover the perfect property that suits your needs.
+            Discover the perfect Place and Skateparks and skate shops.
           </p>
         </div>
         {/* <!-- Form Component --> */}

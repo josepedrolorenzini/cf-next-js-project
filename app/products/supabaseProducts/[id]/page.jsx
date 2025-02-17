@@ -49,6 +49,11 @@ function page(props) {
                     className="mt-6 w-full md:w-2/3 text-center bg-black text-white py-3 text-lg font-semibold rounded-xl transition hover:bg-gray-900">
                         Buy Now
                     </Link>
+                    <Link 
+                     href={`/products/supabaseProducts/edit/${product.id}`}
+                    className="mt-6 w-full md:w-2/3 text-center bg-black text-white py-3 text-lg font-semibold rounded-xl transition hover:bg-gray-900">
+                        Edit product
+                    </Link>
                 </div>
             </div>
         </div>
