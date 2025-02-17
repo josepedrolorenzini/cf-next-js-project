@@ -13,7 +13,7 @@ const connectDB = async () => {
 
     //connect the database to mongoDB
     try {
-        await mongoose.connect(  `mongodb+srv://codigo-facilito-user:STzY5KetVoW5Dgey@nextjsproject.hfci6.mongodb.net/codigoFacilitoNextJS?retryWrites=true&w=majority&appName=NextjsProject` );
+        await mongoose.connect(   );
         connected = true ;
         console.log("MongoDB Connected...");
     } catch (error) {
