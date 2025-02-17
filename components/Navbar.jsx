@@ -81,7 +81,7 @@ function Navbar() {
               />
 
               <span className="hidden ml-2 text-2xl font-bold text-white md:block"
-                >Rock shop</span
+                >Skate shop</span
               >
             </a>
             {/* <!-- Desktop Menu Hidden below md screens --> */}

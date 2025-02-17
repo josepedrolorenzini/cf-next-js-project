@@ -50,6 +50,7 @@ function EditProductPage() {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file);
+      console.log(formData)
     }
   }
 
@@ -152,7 +153,11 @@ function EditProductPage() {
             className="w-full px-3 py-2 border rounded" 
           />
           {formData.image_url && (
-            <img src={formData.image_url} alt="Current Image" className="mt-2 w-32 h-32 object-cover"/>
+            <img 
+          //  src={`/images/products/${product.image_url}`}
+            src={`/images/products/${formData.image_url}`} 
+            alt="Current Image" 
+            className="mt-2 w-32 h-32 object-cover"/>
           )}
         </div>
 
